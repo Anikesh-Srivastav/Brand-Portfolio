@@ -15,7 +15,7 @@ import { motion } from 'motion/react';
             <div className="flex items-center justify-between py-2 sm:py-0 " >
                 <a
                  href="/"
-                 className="text-xl font-bold text-neutral-400 hover:text-white 
+                 className="text-3xl font-bold text-neutral-400 hover:text-white 
              transition-all duration-300 transform hover:scale-105 hover:shadow-sm scroll-smooth">
                    AtmosFlix 
                 </a>

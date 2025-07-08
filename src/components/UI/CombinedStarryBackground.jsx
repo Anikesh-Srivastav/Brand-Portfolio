@@ -21,14 +21,13 @@ const getRandomStartPoint = () => {
   }
 };
 
-const CombinedStarryBackground = React.memo(({
-  children, 
+export const CombinedStarryBackground = React.memo(({
+  children,
   starDensity = 0.0002,
   allStarsTwinkle = true,
   twinkleProbability = 0.7,
   minTwinkleSpeed = 0.5,
   maxTwinkleSpeed = 1,
-
   minSpeed = 10,
   maxSpeed = 30,
   minDelay = 2000,
@@ -37,38 +36,32 @@ const CombinedStarryBackground = React.memo(({
   trailColor = "#57db96",
   starWidth = 12,
   starHeight = 2,
-
   maxShootingStars = 2,
-
   className,
-}) => {
+} = {}) => {
   const [stars, setStars] = useState([]);
   const canvasRef = useRef(null);
-
   const shootingStarsRef = useRef([]);
   const [, setTick] = useState(0);
   const animationFrameIdRef = useRef(null);
   const createTimeoutsRef = useRef([]);
 
-  const generateStars = useCallback(
-    (width, height) => {
-      const area = width * height;
-      const numStars = Math.floor(area * starDensity);
-      return Array.from({ length: numStars }, () => {
-        const shouldTwinkle = allStarsTwinkle || Math.random() < twinkleProbability;
-        return {
-          x: Math.random() * width,
-          y: Math.random() * height,
-          radius: Math.random() * 1.2 + 0.5,
-          opacity: Math.random() * 0.15 + 0.10,
-          twinkleSpeed: shouldTwinkle
-            ? minTwinkleSpeed + Math.random() * (maxTwinkleSpeed - minTwinkleSpeed)
-            : null,
-        };
-      });
-    },
-    [starDensity, allStarsTwinkle, twinkleProbability, minTwinkleSpeed, maxTwinkleSpeed]
-  );
+  const generateStars = useCallback((width, height) => {
+    const area = width * height;
+    const numStars = Math.floor(area * starDensity);
+    return Array.from({ length: numStars }, () => {
+      const shouldTwinkle = allStarsTwinkle || Math.random() < twinkleProbability;
+      return {
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.2 + 0.5,
+        opacity: Math.random() * 0.15 + 0.10,
+        twinkleSpeed: shouldTwinkle
+          ? minTwinkleSpeed + Math.random() * (maxTwinkleSpeed - minTwinkleSpeed)
+          : null,
+      };
+    });
+  }, [starDensity, allStarsTwinkle, twinkleProbability, minTwinkleSpeed, maxTwinkleSpeed]);
 
   useEffect(() => {
     const updateStars = () => {
@@ -173,7 +166,12 @@ const CombinedStarryBackground = React.memo(({
         const newDistance = star.distance + star.speed;
         const newScale = 1 + newDistance / 100;
 
+        // Check for finite numbers; if invalid, remove star
         if (
+          !Number.isFinite(newX) ||
+          !Number.isFinite(newY) ||
+          !Number.isFinite(newDistance) ||
+          !Number.isFinite(newScale) ||
           newX < -50 ||
           newX > window.innerWidth + 50 ||
           newY < -50 ||
@@ -225,17 +223,39 @@ const CombinedStarryBackground = React.memo(({
           </linearGradient>
         </defs>
 
-        {shootingStarsRef.current.map((star) => (
-          <rect
-            key={star.id}
-            x={star.x}
-            y={star.y}
-            width={starWidth * star.scale}
-            height={starHeight}
-            fill="url(#gradient)"
-            transform={`rotate(${star.angle}, ${star.x + (starWidth * star.scale) / 2}, ${star.y + starHeight / 2})`}
-          />
-        ))}
+        {shootingStarsRef.current.map((star) => {
+          const x = star.x;
+          const y = star.y;
+          const scale = star.scale;
+          const angle = star.angle;
+
+          if (
+            !Number.isFinite(x) ||
+            !Number.isFinite(y) ||
+            !Number.isFinite(scale) ||
+            !Number.isFinite(angle)
+          ) {
+            console.warn("Invalid star skipped:", star);
+            return null;
+          }
+
+          const width = starWidth * scale;
+          const height = starHeight;
+          const transformX = x + width / 2;
+          const transformY = y + height / 2;
+
+          return (
+            <rect
+              key={star.id}
+              x={x}
+              y={y}
+              width={width}
+              height={height}
+              fill="url(#gradient)"
+              transform={`rotate(${angle}, ${transformX}, ${transformY})`}
+            />
+          );
+        })}
       </svg>
 
       {/* Render children on top of background */}
@@ -245,5 +265,3 @@ const CombinedStarryBackground = React.memo(({
     </div>
   );
 });
-
-export default CombinedStarryBackground;

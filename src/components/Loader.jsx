@@ -1,6 +1,6 @@
 import { Html, useProgress } from "@react-three/drei";
 
-const Loader = () => {
+export const Loader = () => {
   const { progress } = useProgress();
   return (
     <Html center className="text-xl font-normal text-center">
@@ -9,4 +9,3 @@ const Loader = () => {
   );
 };
 
-export default Loader;
