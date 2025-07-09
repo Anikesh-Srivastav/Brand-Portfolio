@@ -4,6 +4,9 @@ import {CombinedStarryBackground} from './components/UI/CombinedStarryBackground
 import { About } from './sections/About'
 import SplashCursor from './components/UI/SplashCursor'
 import { Projects } from './sections/Projects'
+import { Testimonials } from './sections/Testimonials'
+import { Contact } from './sections/Contact'
+// import { Process } from './sections/Process'
 
 export const App = () => {
   return (
@@ -27,8 +30,11 @@ export const App = () => {
   <div className="relative z-10 container mx-auto max-w-7xl">
     <Navbar />
     <Hero />
+    {/* <Process /> */}
     <About />
     <Projects />
+    <Testimonials />
+    <Contact />
   </div>
 </>
   );

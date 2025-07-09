@@ -8,7 +8,7 @@ export const About = () => {
   const grid2Container = useRef();
 
   return (
-    <section className="c-space section-space mb-5">
+    <section className="c-space section-space mt-23 mb-5">
       <h2 className="text-heading">Our Services</h2>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:auto-rows-[18rem] mt-12">
