@@ -3,6 +3,7 @@ import { Hero } from './sections/Hero'
 import {CombinedStarryBackground} from './components/UI/CombinedStarryBackground'
 import { About } from './sections/About'
 import SplashCursor from './components/UI/SplashCursor'
+import { Projects } from './sections/Projects'
 
 export const App = () => {
   return (
@@ -27,6 +28,7 @@ export const App = () => {
     <Navbar />
     <Hero />
     <About />
+    <Projects />
   </div>
 </>
   );

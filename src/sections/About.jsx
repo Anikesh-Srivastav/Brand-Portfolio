@@ -82,8 +82,8 @@ export const About = () => {
 
          {/* Grid 8 */}
          <div className="grid-8 backdrop-blur-sm bg-white/10 rounded-xl">
-        <div className=" p-3 z-10 w-[65%]">
-              <p className="headtext">Social Media Marketing & Influencer Marketing</p>
+        <div className=" p-3 z-10 w-[60%] relative flex flex-col justify-center h-full">
+              <p className="headtext py-3">Social Media Marketing & Influencer Marketing</p>
               <p className="subtext">Boost your online presence and engagement through targeted social media strategies tailored to connect with your audience and drive results.
               Additionally, leverage the power of influencers to amplify your brand’s reach and credibility, creating authentic connections that strengthen your impact and trust within your target market.</p>
             </div>
@@ -114,6 +114,14 @@ export const About = () => {
                 a lasting impression on your customers.
               </p>
             </div>
+            <div className="absolute inset-y-0 md:inset-y-12 w-full
+           h-full start-[65%] sm:inset-y-10">    
+              <img 
+                src="/assets/designer.png" 
+                alt="designer" 
+                className="max-w-[65%] max-h-[65%]"
+              />
+          </div>
           </div> 
       </div>
     </section>
