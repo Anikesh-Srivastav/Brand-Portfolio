@@ -88,7 +88,7 @@ export const Hero = () => {
             <Float>
               <Astronaut
                 scale={isMobile && 0.19}
-                position={isMobile && [0, -3, 0]}
+                position={isMobile && [0, -3.3, 0]}
               />
             </Float>
             <Rig />
