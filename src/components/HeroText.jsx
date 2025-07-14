@@ -5,9 +5,12 @@ import {motion} from 'motion/react'
 
 
 export const HeroText = () => {
+
+
   
   const words = ['Brand Building','Graphic Design','Website Development',
     'Packaging Design','Social Media Marketing','Influencer Marketing'];
+
   const variants = {
     hidden:{ opacity: 0, x: -50},
     visible: { opacity: 1, x: 0},
@@ -17,7 +20,7 @@ export const HeroText = () => {
         {/* Desktop View */}
         <div className="flex-col hidden md:flex px-5">
             <motion.h1 
-              className="text-6xl font-medium font-['Poppins']"
+              className="hidden sm:block text-6xl font-medium font-['Poppins']"
               variants={variants}
               initial='hidden'
               animate='visible'
