@@ -6,7 +6,6 @@ import {motion} from 'motion/react'
 
 export const HeroText = () => {
 
-
   
   const words = ['Brand Building','Graphic Design','Website Development',
     'Packaging Design','Social Media Marketing','Influencer Marketing'];
@@ -20,7 +19,7 @@ export const HeroText = () => {
         {/* Desktop View */}
         <div className="flex-col hidden md:flex px-5">
             <motion.h1 
-              className="hidden sm:block text-6xl font-medium font-['Poppins']"
+              className="text-6xl font-medium font-['Poppins']"
               variants={variants}
               initial='hidden'
               animate='visible'
@@ -53,15 +52,6 @@ export const HeroText = () => {
         </div>
         {/* Mobile View */}
         <div className="flex flex-col space-y-6 md:hidden">
-            <motion.p 
-              className="text-5xl font-medium font-[poppins]"
-              variants={variants}
-                initial='hidden'
-                animate='visible'
-                transition={{delay: 0.5}}
-              >
-                  AtmosFlix
-            </motion.p>
             <div>
                   <motion.p 
                     className="text-5xl font-black text-white"
