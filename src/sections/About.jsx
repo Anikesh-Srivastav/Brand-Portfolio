@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import Card from "../components/Card";
 import { Globe } from "../components/Globe";
-import { CopyEmailButton } from "../components/CopyEmailButton";
+import { WhatsAppButton } from "../components/CopyEmailButton";
 import {FrameWorks} from "../components/FrameWorks";
 
 export const About = () => {
@@ -99,7 +99,7 @@ export const About = () => {
             <p className="text-center headtext">
             Scrolled this far? Might as well say hi!
             </p>
-            <CopyEmailButton />
+            <WhatsAppButton />
           </div>
         </div>
 
